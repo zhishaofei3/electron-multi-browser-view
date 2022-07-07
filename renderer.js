@@ -4,9 +4,7 @@ const nextBtn = document.getElementById('next-btn')
 const countSpan = document.getElementById('count')
 const currSpan = document.getElementById('curr')
 
-for (let i = 0; i <= 3; i++) {
-  window.electronAPI.setNewWebContent()
-}
+window.electronAPI.setNewWebContent()
 
 btn.addEventListener('click', () => {
   window.electronAPI.setNewWebContent()

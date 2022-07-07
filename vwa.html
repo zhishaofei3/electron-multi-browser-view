@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    body {
+        background: #7EBEA6;
+    }
+  </style>
+</head>
+<body>
+vwa
+<div id="aa"></div>
+
+<button id="send-btn">按钮</button>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    var r = 1
+    var dom = document.getElementById('aa')
+    setInterval(() => {
+      console.log('@@@', r++)
+      dom.innerHTML = String(r)
+    }, 1000)
+
+    const btn = document.getElementById('send-btn')
+    btn.addEventListener('click', onClickBtn)
+  })
+
+  function onClickBtn () {
+    window.electronAPI.msg()
+  }
+</script>
+</body>
+</html>

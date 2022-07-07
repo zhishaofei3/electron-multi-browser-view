@@ -15,6 +15,7 @@ const createWindow = () => {
     width: 1000,
     height: 800,
     webPreferences: {
+      devTools: true,
       preload: path.join(__dirname, 'preload.js'),
     }
   })
@@ -24,10 +25,16 @@ const createWindow = () => {
 
   ipcMain.on('set-new-web-content', (event, title) => {
     // const webContents = event.sender
-    const view = new BrowserView()
-    view.webContents.loadURL('https://jd.com')
+    const view = new BrowserView({
+      webPreferences: {
+        devTools: true,
+        preload: path.join(__dirname, 'browserViewPreload.js'),
+      }
+    })
+    view.webContents.loadURL('http://localhost:8080/vwa.html')
     mainWindow.setBrowserView(view)
     view.setBounds({ x: view.webContents.id * 30, y: 100, width: 800, height: 800 })
+    view.webContents.openDevTools()
 
     console.log('zsf view.webContents.id', view.webContents.id)
     webContentsMap[count++] = view
